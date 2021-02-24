@@ -3,20 +3,13 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.io.*;
 import java.awt.event.*;
-class WTuto extends JFrame implements ActionListener{
+class WTuto extends Window implements ActionListener{
   JLabel text;
   JButton breturn;
-  WPrincipal parent;
-  WTuto(WPrincipal parent){
+  Window parent;
+  WTuto(Window parent){
     this.parent = parent;
     
-    //Frame
-    setSize(800,600);
-    setLocationRelativeTo(null);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setResizable(false);
-    setVisible(false);
-
     //tutorial
     text = new JLabel("",JLabel.CENTER);
     text.setText("<html><body>"+
@@ -43,9 +36,5 @@ class WTuto extends JFrame implements ActionListener{
     if(e.getSource()==breturn){
       parent.setPrincipal(this);
     }
-  }
-  public void setPrincipal(JFrame toprincipal, JFrame close){
-    toprincipal.setVisible(true);
-    close.setVisible(false);
   }
 }
