@@ -1,6 +1,8 @@
 import javax.swing.JFrame;
-class Window extends JFrame{
+import java.awt.event.*;
+class Window extends JFrame implements ActionListener{
   Window(){
+    setLayout(null);
     setSize(800,600);
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -9,6 +11,12 @@ class Window extends JFrame{
   }
   void setPrincipal(Window close){
     setVisible(true);
-    close.setVisible(false);
+    close.close();
+  }
+  void close(){
+    setVisible(false);
+  }
+  @Override
+  public void actionPerformed(ActionEvent e){
   }
 }

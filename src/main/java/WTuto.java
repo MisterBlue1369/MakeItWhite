@@ -1,9 +1,7 @@
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.io.*;
 import java.awt.event.*;
-class WTuto extends Window implements ActionListener{
+class WTuto extends Window {
   JLabel text;
   JButton breturn;
   Window parent;
@@ -22,14 +20,16 @@ class WTuto extends Window implements ActionListener{
         "2.Cada ciertos niveles el tablero aumenta de tamano 1 casilla<br>"+
         "en lo ancho y largo"
         +"</body></html>");
-    text.setLocation((800-text.getSize().width)/2,(600-text.getSize().height)/2);
+    text.setBounds(0,0,800,400);
+    //text.setLocation((800-text.getSize().width)/2,(600-text.getSize().height)/2);
     add(text);
 
     //return button
     breturn = new JButton("return");
-    breturn.setBounds((800-breturn.getSize().width)/2,400,100,50);
+    breturn.setBounds(100,400,600,100);
     breturn.addActionListener(this);
-    this.add(breturn);
+    add(breturn);
+
   }
   @Override
   public void actionPerformed(ActionEvent e){

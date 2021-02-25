@@ -2,9 +2,13 @@ WPrincipal.java
  WPrincipal
 WPlay.java
  WPlay
-Main.java
- Main
 Window.java
  Window
+Main.java
+ Main
+GBox.java
+ GBox
 WTuto.java
  WTuto
+GBoard.java
+ GBoard
