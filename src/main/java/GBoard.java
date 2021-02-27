@@ -3,9 +3,9 @@ class GBoard implements ActionListener{
   GBox[][] board;
   int BSize;
   int size;
-  Window parent;
+  WPlay parent;
   int level;
-  GBoard (int size, Window parent){
+  GBoard (int size, WPlay parent){
     this.size = size;
     this.parent = parent;
     level = 1;
@@ -47,11 +47,12 @@ class GBoard implements ActionListener{
   }
   public void win(){
     level++;
-    if(level>= size*size){
+    if(level> size*size){
+      level = 1;
       Makebigger();
-    }else{
-      MakeRandom();
     }
+    MakeRandom();
+    parent.level.setText("level "+level);
   }
   public boolean checkwin(){
     boolean gwin = true;

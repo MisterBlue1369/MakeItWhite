@@ -20,6 +20,9 @@ class WPlay extends Window {
     level.addActionListener(this);
     add(level);
   }
+  public JButton getlevel (){
+    return level;
+  }
   void Oncreate(){
     if(!create){
       board.onCreate();
