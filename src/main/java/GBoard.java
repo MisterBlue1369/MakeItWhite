@@ -4,12 +4,14 @@ class GBoard implements ActionListener{
   int BSize;
   int size;
   Window parent;
+  int level;
   GBoard (int size, Window parent){
-    BSize = 500/size;
     this.size = size;
     this.parent = parent;
+    level = 1;
   }
-  void onCreate(int size){
+  void onCreate(){
+    BSize = 500/size;
     board = new GBox[size][size];
     for(int i = 0; i < size; i++){ 
       for(int j = 0; j < size; j++){
@@ -19,33 +21,61 @@ class GBoard implements ActionListener{
         board[j][i].addActionListener(this);
       }
     }
+    if (checkwin())MakeRandom();
   }
-  public void win(){
-    board = null;
+  public void Makebigger(){
     for(int i = 0; i < size; i++){ 
       for(int j = 0; j < size; j++){
         parent.remove(board[j][i]);
       }
     }
+    board = null;
     size++;
-    onCreate(size);
+    onCreate();
   }
-  public void checkwin(){
+  public void MakeRandom(){
+    for(int i = 1; i <= level; i++){
+      clickbutton((int)(Math.random()*size),(int)(Math.random()*size));
+    }
+  }
+  public void makewhite(){
+    for(int i = 0; i < size; i++){ 
+      for(int j = 0; j < size; j++){
+        board[j][i].changeto(true);
+      }
+    }
+  }
+  public void win(){
+    level++;
+    if(level>= size*size){
+      Makebigger();
+    }else{
+      MakeRandom();
+    }
+  }
+  public boolean checkwin(){
     boolean gwin = true;
     for(int i = 0; i < size; i++){ 
       for(int j = 0; j < size; j++){
-        if(!board[j][i].state)gwin = false;
+        if(!board[j][i].state){
+          gwin = false;
+        }
       }
     }
-    if(gwin)win();
+    return gwin;
+  }
+  public void clickbutton(int j, int i){
+    for(int k = i-1; k <= i+1; k++){for(int l = j-1; l <= j+1; l++){if(k >= 0 && k < size && l >= 0 && l < size){
+      board[l][k].change();
+    }}}
   }
   @Override
   public void actionPerformed(ActionEvent e){
     for(int i = 0; i < size; i++){for(int j = 0; j < size; j++){if(e.getSource()==board[j][i]){
-          for(int k = i-1; k <= i+1; k++){for(int l = j-1; l <= j+1; l++){if(k >= 0 && k < size && l >= 0 && l < size){
-                board[l][k].change();
-          }}}
+      clickbutton(j, i);
     }}}
-    checkwin();
+    if(checkwin()){
+      win();
+    }
   }
 }

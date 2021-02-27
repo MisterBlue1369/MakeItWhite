@@ -1,14 +1,14 @@
+WTuto.java
+ WTuto
+Main.java
+ Main
+Window.java
+ Window
+GBox.java
+ GBox
 WPrincipal.java
  WPrincipal
 WPlay.java
  WPlay
-Window.java
- Window
-Main.java
- Main
-GBox.java
- GBox
-WTuto.java
- WTuto
 GBoard.java
  GBoard

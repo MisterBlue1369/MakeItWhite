@@ -3,6 +3,7 @@ import javax.swing.JButton;
 class WPlay extends Window {
   Window parent;
   JButton breturn;
+  JButton level;
   GBoard board;
   boolean create = false;
   WPlay(Window parent){
@@ -10,14 +11,18 @@ class WPlay extends Window {
     board = new GBoard(5,this);
 
     breturn = new JButton("return");
-    breturn.setBounds(100,500,200,100);
+    breturn.setBounds(150,500,250,100);
     breturn.addActionListener(this);
     add(breturn);
 
+    level = new JButton("level");
+    level.setBounds(400,500,250,100);
+    level.addActionListener(this);
+    add(level);
   }
   void Oncreate(){
     if(!create){
-      board.onCreate(5);
+      board.onCreate();
       create = true;
     }
   }
@@ -25,6 +30,12 @@ class WPlay extends Window {
   public void actionPerformed(ActionEvent e){
     if(e.getSource()==breturn){
       parent.setPrincipal(this);
+    }
+    if(e.getSource()==level){
+      board.makewhite();
+      do{
+        board.MakeRandom();
+      }while(board.checkwin());
     }
   }
 }
